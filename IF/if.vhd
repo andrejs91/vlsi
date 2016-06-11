@@ -29,7 +29,7 @@ end if_jedinica;
 
 architecture impl of if_jedinica is
 
-	signal pc, pc_next : std_logic_vector((addr_length-1) downto 0);
+	signal pc, pc_next, pc_reg_out : std_logic_vector((addr_length-1) downto 0);
 	
 begin
 
@@ -41,18 +41,27 @@ begin
 			pc_next<= initial_PC;
 			ird<= '0';
 		elsif (rising_edge(clk)) then
-			pc<=pc_next;
-			if(stall='0') then
+			
 			pc_next <= std_logic_vector(unsigned(pc_next) + 1);
-			end if;
+			pc<=pc_next;
+			
+			
 			ird<='1';
-			pc_out <= pc;
+			pc_reg_out <= pc;
 			flush_out <=flush;
-		end if;
+			
+			if(stall='1') then
+				pc_next <= pc_next;
+				pc <= pc;
+				pc_reg_out<= pc_reg_out;
+			end if;
 	
+		end if;
+		
 	end process;
 	instr_to_decode<=instr;
-	IF_addr <= pc;
+	IF_addr <= pc when stall = '0' else pc_reg_out;
+	pc_out <= pc_reg_out;
 	
 	
 end impl;

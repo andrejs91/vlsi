@@ -45,13 +45,16 @@ architecture rtl of if_decode is
 	
 	signal rs1_data : std_logic_vector(31 downto 0);
 	signal rs2_data : std_logic_vector(31 downto 0);
+	
+	
+	
 	signal psw_out_decode : std_logic_vector(31 downto 0);
 
 	signal instr_decode_exe : std_logic_vector(31 downto 0);
 	
 	signal opcode_s : std_logic_vector((opcode_length-1) downto 0);--out iz decode
 	signal rd_adr : std_logic_vector(4 downto 0);--out iz decode
-	signal imm_value : std_logic_vector (15 downto 0);--out iz decode
+	signal imm_value_out : std_logic_vector (15 downto 0);--out iz decode
 	
 	signal opcode_ex : std_logic_vector((opcode_length-1) downto 0);--out iz exe
 	signal rd_adr_ex : std_logic_vector(4 downto 0);--out iz exe
@@ -96,7 +99,11 @@ architecture rtl of if_decode is
 	signal flush_ex : std_logic;
 	signal rs1_adr : std_logic_vector (reg_adr_length-1 downto 0); 
 	signal rs2_adr : std_logic_vector (reg_adr_length-1 downto 0); 
+	signal op1_adr_out :std_logic_vector (reg_adr_length-1 downto 0); 
+	signal op2_adr_out :std_logic_vector (reg_adr_length-1 downto 0);
 	
+	signal op1_data : std_logic_vector(31 downto 0);
+	signal op2_data : std_logic_vector(31 downto 0);
 	
 begin
 
@@ -110,7 +117,7 @@ begin
 	port map (
 		clk,reset,pc_out,instr_IF_decode,instr_decode_exe,stall_id,flush_id_exe,flush_if_decode,flush_id,
 		wr,psw_wr,wr_adr,wr_data,psw_in,rs1_data,rs2_data,psw_out_decode,forward_rs1,
-		forward_rs2,fwd_rs1_value,fwd_rs2_value,opcode_s,rd_adr,imm_value,rs1_adr,rs2_adr
+		forward_rs2,fwd_rs1_value,fwd_rs2_value,opcode_s,rd_adr,imm_value_out,rs1_adr,rs2_adr,op1_adr_out,op2_adr_out,op1_data,op2_data
 	);
 	
 	instr_cache: entity work.InstrCache(ins_cache_impl)
@@ -121,7 +128,7 @@ begin
 	exe_jedinica: entity work.Exe(rtl)
 	port map (
 		clk,rs1_data,rs2_data,st_value,instr_decode_exe,
-		opcode_s,opcode_ex,rd_adr,rd_adr_ex,imm_value,
+		opcode_s,opcode_ex,rd_adr,rd_adr_ex,imm_value_out,
 		psw_out_decode,data_alu_out,psw_alu_out,instr_out,flush_ex,flush_id_exe,
 		ar_log,brnch,load,valid
 	);
@@ -146,7 +153,7 @@ begin
 	
 	fwd: entity work.Forward(rtl)
 	port map (
-	rd_adr_ex,rd_adr_mem_out,wr_adr,rs1_adr,rs2_adr,data_alu_out,rd_reg_mem,wr_data,
+	rd_adr_ex,rd_adr_mem_out,wr_adr,op1_adr_out,op2_adr_out,data_alu_out,rd_reg_mem,wr_data,
 	forward_rs1,forward_rs2,fwd_rs1_value,fwd_rs2_value,stall_if,stall_id,valid
 	);
 	
