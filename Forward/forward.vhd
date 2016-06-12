@@ -14,9 +14,9 @@ entity Forward is
 		rs1_adr: in  std_logic_vector(4 downto 0); --adrese iz decode faze
 		rs2_adr: in  std_logic_vector(4 downto 0);
 				
-		rd_ex	: in  std_logic_vector(31 downto 0);
-		rd_mem	: in  std_logic_vector(31 downto 0);
-		rd_wb	: in  std_logic_vector(31 downto 0);
+		rd_ex	: in  std_logic_vector(31 downto 0);  -- podatak koji se prosledjuje iz exe
+		rd_mem	: in  std_logic_vector(31 downto 0);  -- podatak koji se prosledjuje iz mem
+		rd_wb	: in  std_logic_vector(31 downto 0);  -- podatak koji se prosledjuje iz wb
 		
 		fwd_rs1: out std_logic;
 		fwd_rs2: out std_logic;
@@ -38,6 +38,7 @@ end Forward;
 
 architecture rtl of Forward is
 
+signal ind : std_logic_vector (1 downto 0) := "00";
 
 begin
 
@@ -54,6 +55,7 @@ begin
 		if(rd_adr_wb=rs1_adr and rd_adr_wb /= "ZZZZZ" and rs1_adr /= "ZZZZZ") then 
 			fwd_rs1 <= '1';
 			fwd_rs1_value <= rd_wb;
+			ind <= "01";
 		end if;
 		
 		if(rd_adr_wb=rs2_adr and rd_adr_wb /= "ZZZZZ"and rs2_adr /= "ZZZZZ") then 
@@ -64,6 +66,7 @@ begin
 		if(rd_adr_mem=rs1_adr and rd_adr_mem /= "ZZZZZ"and rs1_adr /= "ZZZZZ") then 
 			fwd_rs1 <= '1';
 			fwd_rs1_value <= rd_mem;	
+			ind <= "10";
 		end if;
 		
 		if(rd_adr_mem=rs2_adr and rd_adr_mem /= "ZZZZZ"and rs2_adr /= "ZZZZZ") then 
@@ -75,10 +78,12 @@ begin
 			if (valid = '1') then
 				fwd_rs1 <= '1';
 				fwd_rs1_value <= rd_ex;
+				ind <= "11";
 			else
 				fwd_rs1 <= '0';
 				stall_if <= '1';
 				stall_id <= '1';
+				ind <= "11";
 			end if;
 		end if;
 		

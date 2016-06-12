@@ -18,8 +18,8 @@ entity Decode is
 		clk : in std_logic;
 		reset: in std_logic;
 		PC_addr: in std_logic_vector((addr_length-1) downto 0); --Vrednost PC dobijena iz if faze
-		instr_from_if:in std_logic_vector((instr_length-1) downto 0);
-		instr_out:out std_logic_vector((instr_length-1) downto 0);
+		instr_from_if:in std_logic_vector((instr_length-1) downto 0); -- instrukcija iz if-a
+		instr_out:out std_logic_vector((instr_length-1) downto 0); -- prosledjivanje instrukcije u sledecu fazu
 		
 		stall: in std_logic;
 		flush_out: out std_logic;
@@ -45,11 +45,11 @@ entity Decode is
 		opcode_out : out std_logic_vector((opcode_length-1) downto 0);
 		rd_adr: out std_logic_vector(4 downto 0);
 		imm_value_out : out std_logic_vector (15 downto 0);
-		rs1_adr : out std_logic_vector((reg_adr_length-1) downto 0);
-		rs2_adr : out std_logic_vector((reg_adr_length-1) downto 0);
+		rs1_adr : out std_logic_vector((reg_adr_length-1) downto 0); -- adr registra -> exe 
+		rs2_adr : out std_logic_vector((reg_adr_length-1) downto 0); -- adr registra -> exe 
 		op1_adr_out : out std_logic_vector((reg_adr_length-1) downto 0); -- adr registra -> forward 
 		op2_adr_out : out std_logic_vector((reg_adr_length-1) downto 0); -- adr registra -> forward 
-		op1_data: inout std_logic_vector((reg_data_length-1) downto 0);
+		op1_data: inout std_logic_vector((reg_data_length-1) downto 0); 
 		op2_data: inout std_logic_vector((reg_data_length-1) downto 0)
 	);
 end Decode;
@@ -59,7 +59,8 @@ architecture impl of Decode is
 	signal op1_adr, op2_adr : std_logic_vector((reg_adr_length-1) downto 0);
 	signal imm_value : std_logic_vector (15 downto 0);
 	signal psw_rd : std_logic;
---	signal op1_data, op2_data : std_logic_vector(31 downto 0);
+	signal flush_next : std_logic;
+	signal instr, instr_next : std_logic_vector((instr_length-1) downto 0);
 	
 begin
 
@@ -91,63 +92,62 @@ begin
 			rd_adr <= (others=> 'Z');
 			rs1_adr <= (others=> 'Z');
 			rs2_adr <= (others=> 'Z');
+			
 		elsif (rising_edge(clk)) then
 		
-		
-		
-		opcode := instr_from_if((instr_length-1) downto (instr_length-opcode_length));
-		instr_out <= instr_from_if;
-		opcode_out <= opcode;
-		op1_adr <= (others=> 'Z');
-		op2_adr <=	(others=> 'Z');
-		rd_adr <=	(others=> 'Z');
+			opcode := instr((instr_length-1) downto (instr_length-opcode_length));
+			instr_out <= instr;
+			opcode_out <= opcode;
+			op1_adr <= (others=> 'Z');
+			op2_adr <=	(others=> 'Z');
+			rd_adr <=	(others=> 'Z');
 			if (opcode = "000000") then -- load
-				op1_adr <= instr_from_if (20 downto 16);
+				op1_adr <= instr (20 downto 16);
 				--rs1_adr <= instr_from_if (20 downto 16); -- prosledjujemo adresu rs reg u fwd jedinicu
-				rd_adr <= instr_from_if (25 downto 21);
-				imm_value <= instr_from_if (15 downto 0);
+				rd_adr <= instr (25 downto 21);
+				imm_value <= instr (15 downto 0);
 			end if;
 			if (opcode = "000001" or (opcode >= "101000" and opcode <= "101101")) then -- store, instrukcije uslovnog skoka
-				op1_adr <= instr_from_if (20 downto 16);
-				op2_adr <= instr_from_if (15 downto 11);
-				imm_value(15 downto 11) <= instr_from_if(25 downto 21);
-				imm_value(10 downto 0) <= instr_from_if( 10 downto 0);
+				op1_adr <= instr (20 downto 16);
+				op2_adr <= instr (15 downto 11);
+				imm_value(15 downto 11) <= instr(25 downto 21);
+				imm_value(10 downto 0) <= instr( 10 downto 0);
 			end if;
 			if (opcode = "000100") then -- mov
-				op1_adr <= instr_from_if (20 downto 16);
+				op1_adr <= instr (20 downto 16);
 				--rs1_adr <= instr_from_if (20 downto 16);
-				rd_adr <= instr_from_if (25 downto 21);
+				rd_adr <= instr (25 downto 21);
 			end if;
 			if (opcode = "000101") then -- movi
-				imm_value <= instr_from_if(15 downto 0);
-				rd_adr <= instr_from_if (25 downto 21);
+				imm_value <= instr(15 downto 0);
+				rd_adr <= instr (25 downto 21);
 			end if;
 			if (opcode = "001000" or opcode = "001001" or (opcode >= "010000" and opcode <= "010011")) then --add, sub, and, or, xor, not
-				op1_adr <= instr_from_if (20 downto 16);
-				op2_adr <= instr_from_if (15 downto 11);
-				rd_adr <= instr_from_if (25 downto 21);
+				op1_adr <= instr (20 downto 16);
+				op2_adr <= instr (15 downto 11);
+				rd_adr <= instr (25 downto 21);
 			end if;
 			if (opcode = "001100" or opcode = "001101") then --addi, subi
-				op1_adr <= instr_from_if (20 downto 16);
-				imm_value <= instr_from_if (15 downto 0);
-				rd_adr <= instr_from_if (25 downto 21);
+				op1_adr <= instr (20 downto 16);
+				imm_value <= instr (15 downto 0);
+				rd_adr <= instr (25 downto 21);
 			end if;
 			if (opcode >= "011000" and opcode <= "011100") then --pomeracke instrukcije
-				op1_adr <= instr_from_if (25 downto 21);
-				imm_value(4 downto 0) <= instr_from_if (15 downto 11);
+				op1_adr <= instr (25 downto 21);
+				imm_value(4 downto 0) <= instr (15 downto 11);
 				imm_value(15 downto 5)<= (others => '0');
-				rd_adr <= instr_from_if (25 downto 21);
+				rd_adr <= instr (25 downto 21);
 			end if;
 			if (opcode = "100000" or opcode = "100001") then --jmp, jsr
-				op1_adr <= instr_from_if(20 downto 16);
-				imm_value <= instr_from_if (15 downto 0);
+				op1_adr <= instr(20 downto 16);
+				imm_value <= instr (15 downto 0);
 			end if;
 			if (opcode = "100100") then --push
-				op1_adr <= instr_from_if (20 downto 16);
+				op1_adr <= instr (20 downto 16);
 			end if;
 			
 			if (opcode = "100101") then --pop
-				rd_adr <= instr_from_if (25 downto 21);
+				rd_adr <= instr (25 downto 21);
 			end if;
 			
 			if(stall='1') then
@@ -174,12 +174,13 @@ begin
 		
 		
 		
-		if(stall='1' or flush='1' or flush_if='1') then
-			flush_out<='1';
-		else
-			flush_out<='0';
-		end if;
-		
+			if(flush='1' or flush_if='1') then
+				flush_next<='1';
+			else
+				flush_next<='0';
+			end if;
+			
+			instr_next <= instr;
 		
 		end if;
 	
@@ -189,6 +190,8 @@ begin
 	imm_value_out <= imm_value;
 	rs1_data <= fwd_rs1_value when forward_rs1 = '1' else op1_data;
 	rs2_data <= fwd_rs2_value when forward_rs2 = '1' else op2_data;
+	flush_out <= '1' when stall = '1' else flush_next;
+	instr <= instr_from_if when stall = '0' else instr_next;
 	
 end impl;
 

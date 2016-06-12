@@ -16,15 +16,6 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity if_decode_vhd_tst
 -- Compiling architecture if_decode_arch of if_decode_vhd_tst
 
-} {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Forward/forward.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Forward/forward.vhd}
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity Forward
--- Compiling architecture rtl of Forward
-
 } {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/EX/EX.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/EX/EX.vhd}
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -33,6 +24,15 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package NUMERIC_STD
 -- Compiling entity Exe
 -- Compiling architecture rtl of Exe
+
+} {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Regfile/Regfile.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Regfile/Regfile.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity Regfile
+-- Compiling architecture rtl of Regfile
 
 } {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/DataCache/DataCache.vhd} {2 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/DataCache/DataCache.vhd}
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -56,15 +56,6 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package NUMERIC_STD
 -- Compiling entity if_jedinica
 -- Compiling architecture impl of if_jedinica
-
-} {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Mem/MEM.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Mem/MEM.vhd}
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity MEM
--- Compiling architecture rtl of MEM
 
 } {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Decode/Decode.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Decode/Decode.vhd}
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
