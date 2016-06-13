@@ -17,7 +17,7 @@ L8
 VH:?@1DF4YCY3P8diC35PW3
 Z8 OV;C;10.1d;51
 32
-Z9 !s108 1465743251.338000
+Z9 !s108 1465827819.384000
 Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/DataCache/DataCache.vhd|
 Z11 !s107 C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/DataCache/DataCache.vhd|
 Z12 o-work work -2002 -explicit -O0
@@ -43,7 +43,7 @@ R13
 !s100 g6Gl=o7hQ>UBBHKB;e]][1
 !i10b 1
 Edecode
-Z15 w1465736541
+Z15 w1465826912
 R1
 R2
 R3
@@ -53,15 +53,15 @@ Z16 8C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Decode/Decode.vhd
 Z17 FC:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Decode/Decode.vhd
 l0
 L6
-VM1MRQHXZZnLWm9GO_1To60
+V18e;SZFIeg:Lh[2>?9mO>3
 R8
 32
-Z18 !s108 1465743251.685000
+Z18 !s108 1465827819.761000
 Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Decode/Decode.vhd|
 Z20 !s107 C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Decode/Decode.vhd|
 R12
 R13
-!s100 cDPlY[G3Q90Z26U;ijTLn3
+!s100 6TdfFNfLbYl]nR3GN][Tb2
 !i10b 1
 Aimpl
 Z21 DEx4 work 7 regfile 0 22 3Nz<WYdfmLhiX5?[F<:aL2
@@ -69,10 +69,10 @@ R1
 R2
 R3
 R4
-Z22 DEx4 work 6 decode 0 22 M1MRQHXZZnLWm9GO_1To60
-l65
-L58
-VGPXVUk>icYZlILWVBJWV:2
+Z22 DEx4 work 6 decode 0 22 18e;SZFIeg:Lh[2>?9mO>3
+l70
+L63
+VTWi2WE_]ACQX?2O9l9PME1
 R8
 32
 R18
@@ -80,7 +80,7 @@ R19
 R20
 R12
 R13
-!s100 bi9BWQEk?Z^@MbcJN?I1O0
+!s100 kfc=Se^dL54=<3C>2`C;[3
 !i10b 1
 Eexe
 Z23 w1465566025
@@ -95,7 +95,7 @@ L5
 VFDnF=DUNMl8mzC>X0UI800
 R8
 32
-Z26 !s108 1465743252.187000
+Z26 !s108 1465827820.102000
 Z27 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/EX/EX.vhd|
 Z28 !s107 C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/EX/EX.vhd|
 R12
@@ -120,7 +120,7 @@ R13
 !s100 49YUQWeR8n4X>;_UQW@XR0
 !i10b 1
 Eforward
-Z30 w1465743228
+Z30 w1465827375
 R2
 R3
 R4
@@ -129,24 +129,24 @@ Z31 8C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Forward/forward.vhd
 Z32 FC:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Forward/forward.vhd
 l0
 L5
-VXYQ6ET_dimM:9Cc5a3BVZ1
+V<VCG70A^T=Gn09a:J1M;P0
 R8
 32
-Z33 !s108 1465743252.603000
+Z33 !s108 1465827820.433000
 Z34 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Forward/forward.vhd|
 Z35 !s107 C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Forward/forward.vhd|
 R12
 R13
-!s100 aI1EFh2_P=^HPDZANH@Lg2
+!s100 P4jNfmbcgQnOZPdfj>fV;2
 !i10b 1
 Artl
 R2
 R3
 R4
-Z36 DEx4 work 7 forward 0 22 XYQ6ET_dimM:9Cc5a3BVZ1
-l43
-L39
-VKKC]8Vi7[]YcGWzjOM47E2
+Z36 DEx4 work 7 forward 0 22 <VCG70A^T=Gn09a:J1M;P0
+l46
+L42
+VHIXL@=8@aHYB49a5Rbo4N1
 R8
 32
 R33
@@ -154,10 +154,10 @@ R34
 R35
 R12
 R13
-!s100 <RE3o15R0_S7DR[T;Ckoz1
+!s100 D[QT<_Cl=eFA0FzfUkCAH0
 !i10b 1
 Eif_decode
-Z37 w1465677413
+Z37 w1465827795
 R2
 R3
 R4
@@ -169,7 +169,7 @@ L6
 VL[z=M4[caiQ70L7hXWBUV1
 R8
 32
-Z40 !s108 1465743254.741000
+Z40 !s108 1465827822.473000
 Z41 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/if_decode/if_decode.vhd|
 Z42 !s107 C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/if_decode/if_decode.vhd|
 R12
@@ -190,10 +190,9 @@ R2
 R3
 R4
 DEx4 work 9 if_decode 0 22 L[z=M4[caiQ70L7hXWBUV1
-l108
+l114
 L29
-VKXV8FDCBX0J=D4M5OSazH1
-!s100 V7a>QX>1MiHdn`nUZ5Ig70
+VWfeIK?U>9ZoSB9WKNRXhh3
 R8
 32
 R40
@@ -201,6 +200,7 @@ R41
 R42
 R12
 R13
+!s100 8b@Sf6MUmSGeoREaR=?@A1
 !i10b 1
 Eif_decode_vhd_tst
 Z47 w1465562282
@@ -216,7 +216,7 @@ V@V@W4TVnVS[MieJF]bn`:0
 R8
 32
 !i10b 1
-Z50 !s108 1465743255.115000
+Z50 !s108 1465827822.923000
 Z51 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/simulation/modelsim/if_decode.vht|
 Z52 !s107 C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/simulation/modelsim/if_decode.vht|
 R12
@@ -250,7 +250,7 @@ L5
 Vcj^C<Z_:1E`SRNbAK8;kD0
 R8
 32
-Z59 !s108 1465743252.934000
+Z59 !s108 1465827820.953000
 Z60 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/IF/if.vhd|
 Z61 !s107 C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/IF/if.vhd|
 R12
@@ -288,7 +288,7 @@ L7
 VPW7:M9?h]BN`YV;CiHOhf3
 R8
 32
-Z65 !s108 1465743253.455000
+Z65 !s108 1465827821.339000
 Z66 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/InstructionCache/InstructionCache.vhd|
 Z67 !s107 C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/InstructionCache/InstructionCache.vhd|
 R12
@@ -327,7 +327,7 @@ V3eBTMDfoHn590ha^]Xdhk0
 R8
 32
 b1
-Z71 !s108 1465743251.016000
+Z71 !s108 1465827818.955000
 Z72 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/InstrConst/InstrCosnt.vhd|
 Z73 !s107 C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/InstrConst/InstrCosnt.vhd|
 R12
@@ -353,7 +353,7 @@ nbody
 !s100 U:GL8zLaJ=>g;50TNgEY@2
 !i10b 1
 Emem
-Z74 w1465742502
+Z74 w1465746158
 R2
 R3
 R4
@@ -365,7 +365,7 @@ L5
 V`^Tf`7RS713YSAmEXRUW90
 R8
 32
-Z77 !s108 1465743253.886000
+Z77 !s108 1465827821.677000
 Z78 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Mem/MEM.vhd|
 Z79 !s107 C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Mem/MEM.vhd|
 R12
@@ -402,7 +402,7 @@ L5
 V3Nz<WYdfmLhiX5?[F<:aL2
 R8
 32
-Z83 !s108 1465743250.717000
+Z83 !s108 1465827818.628000
 Z84 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Regfile/Regfile.vhd|
 Z85 !s107 C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Regfile/Regfile.vhd|
 R12
@@ -439,7 +439,7 @@ L5
 V7?9:ijd1<RVJMJ2Mmo02N1
 R8
 32
-Z89 !s108 1465743254.257000
+Z89 !s108 1465827822.072000
 Z90 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/WB/WB.vhd|
 Z91 !s107 C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/WB/WB.vhd|
 R12

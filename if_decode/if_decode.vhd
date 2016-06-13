@@ -88,10 +88,16 @@ architecture rtl of if_decode is
 	signal stall_id : std_logic;
 	signal flush_id_exe : std_logic;
 	signal flush_id : std_logic;
-	signal forward_rs1 : std_logic;
-	signal forward_rs2 : std_logic;
-	signal fwd_rs1_value : std_logic_vector (data_length-1 downto 0);
-	signal fwd_rs2_value : std_logic_vector (data_length-1 downto 0);
+	
+	signal forward_rs1_ex: std_logic;
+	signal forward_rs1_mem: std_logic;
+	signal forward_rs1_wb: std_logic;
+	
+	signal forward_rs2_ex: std_logic;
+	signal forward_rs2_mem: std_logic;
+	signal forward_rs2_wb: std_logic;
+	
+	
 	signal st_value : std_logic_vector((data_length - 1) downto 0);
 	signal data_alu_out : std_logic_vector((data_length - 1) downto 0);
 	signal psw_alu_out : std_logic_vector((data_length - 1) downto 0);
@@ -116,8 +122,11 @@ begin
 	decode_jedinica: entity work.Decode(impl)
 	port map (
 		clk,reset,pc_out,instr_IF_decode,instr_decode_exe,stall_id,flush_id_exe,flush_if_decode,flush_id,
-		wr,psw_wr,wr_adr,wr_data,psw_in,rs1_data,rs2_data,psw_out_decode,forward_rs1,
-		forward_rs2,fwd_rs1_value,fwd_rs2_value,opcode_s,rd_adr,imm_value_out,rs1_adr,rs2_adr,op1_adr_out,op2_adr_out,op1_data,op2_data
+		wr,psw_wr,wr_adr,wr_data,psw_in,rs1_data,rs2_data,psw_out_decode,
+		forward_rs1_ex,forward_rs1_mem,forward_rs1_wb,
+		data_alu_out,rd_reg_mem,wr_data,
+		forward_rs2_ex,forward_rs2_mem,forward_rs2_wb,
+		opcode_s,rd_adr,imm_value_out,rs1_adr,rs2_adr,op1_adr_out,op2_adr_out,op1_data,op2_data
 	);
 	
 	instr_cache: entity work.InstrCache(ins_cache_impl)
@@ -153,8 +162,9 @@ begin
 	
 	fwd: entity work.Forward(rtl)
 	port map (
-	rd_adr_ex,rd_adr_mem_out,wr_adr,op1_adr_out,op2_adr_out,data_alu_out,rd_reg_mem,wr_data,
-	forward_rs1,forward_rs2,fwd_rs1_value,fwd_rs2_value,stall_if,stall_id,valid
+	rd_adr_ex,rd_adr_mem_out,wr_adr,op1_adr_out,op2_adr_out,
+	forward_rs1_ex,forward_rs1_mem,forward_rs1_wb,forward_rs2_ex,forward_rs2_mem,forward_rs2_wb,
+	stall_if,stall_id,valid
 	);
 	
 end rtl;

@@ -31,16 +31,23 @@ entity Decode is
 		wr_adr: in std_logic_vector((reg_adr_length-1) downto 0); --adresa registra za upis u regfile
 		wr_data: in std_logic_vector((reg_data_length-1) downto 0);
 		psw_in: in std_logic_vector((reg_data_length-1) downto 0);
-		rs1_data: out std_logic_vector((reg_data_length-1) downto 0);
-		rs2_data: out std_logic_vector((reg_data_length-1) downto 0);
+		rs1_data: out std_logic_vector((reg_data_length-1) downto 0); -- vrednost registra ka exe
+		rs2_data: out std_logic_vector((reg_data_length-1) downto 0); -- vrednost registra ka exe
 		
 		psw_out: out std_logic_vector((reg_data_length-1) downto 0);
 		
 		
-		forward_rs1: in std_logic;
-		forward_rs2: in std_logic;
-		fwd_rs1_value: in std_logic_vector(31 downto 0);
-		fwd_rs2_value: in std_logic_vector(31 downto 0);
+		forward_rs1_ex: in std_logic;
+		forward_rs1_mem: in std_logic;
+		forward_rs1_wb: in std_logic;
+		
+		fwd_value_ex: in std_logic_vector(31 downto 0);
+		fwd_value_mem: in std_logic_vector(31 downto 0);
+		fwd_value_wb: in std_logic_vector(31 downto 0);
+		
+		forward_rs2_ex: in std_logic;
+		forward_rs2_mem: in std_logic;
+		forward_rs2_wb: in std_logic;
 		
 		opcode_out : out std_logic_vector((opcode_length-1) downto 0);
 		rd_adr: out std_logic_vector(4 downto 0);
@@ -153,24 +160,12 @@ begin
 			if(stall='1') then
 				op1_adr <= op1_adr; 
 				op2_adr <= op2_adr;
---				op1_data <= op1_data;
---				op2_data <= op2_data;
 			end if;
 			
 			
 			--rts nema prosledjivanje vrednosti registra
 			rs1_adr <= op1_adr;
 			rs2_adr <= op2_adr;
---			if (forward_rs1 = '1') then
---				rs1_data <= fwd_rs1_value;
---			else
---				rs1_data <= op1_data;
---			end if;
---			if (forward_rs2 = '1') then
---				rs2_data <= fwd_rs2_value;
---			else
---				rs2_data <= op2_data;
---			end if;
 		
 		
 		
@@ -188,8 +183,17 @@ begin
 	op1_adr_out <= op1_adr;
 	op2_adr_out <= op2_adr;
 	imm_value_out <= imm_value;
-	rs1_data <= fwd_rs1_value when forward_rs1 = '1' else op1_data;
-	rs2_data <= fwd_rs2_value when forward_rs2 = '1' else op2_data;
+	
+	rs1_data <= fwd_value_ex when forward_rs1_ex = '1' else
+					fwd_value_mem when forward_rs1_mem = '1' else
+					fwd_value_wb when forward_rs1_wb = '1' else 
+					op1_data;
+					
+	rs2_data <= fwd_value_ex when forward_rs2_ex = '1' else
+					fwd_value_mem when forward_rs2_mem = '1' else
+					fwd_value_wb when forward_rs2_wb = '1' else 
+					op2_data;
+	
 	flush_out <= '1' when stall = '1' else flush_next;
 	instr <= instr_from_if when stall = '0' else instr_next;
 	

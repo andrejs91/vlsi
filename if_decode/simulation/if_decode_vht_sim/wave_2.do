@@ -32,6 +32,7 @@ add wave -noupdate -radix hexadecimal /if_decode_vhd_tst/i1/decode_jedinica/imm_
 add wave -noupdate -radix hexadecimal /if_decode_vhd_tst/i1/exe_jedinica/clk
 add wave -noupdate /if_decode_vhd_tst/i1/fwd/fwd_rs1
 add wave -noupdate -radix hexadecimal /if_decode_vhd_tst/i1/fwd/fwd_rs1_value
+add wave -noupdate /if_decode_vhd_tst/i1/fwd/rs1_value
 add wave -noupdate -radix hexadecimal /if_decode_vhd_tst/i1/fwd/rd_ex
 add wave -noupdate -radix hexadecimal /if_decode_vhd_tst/i1/fwd/rd_mem
 add wave -noupdate -radix hexadecimal /if_decode_vhd_tst/i1/fwd/rd_wb
@@ -86,7 +87,7 @@ add wave -noupdate -radix hexadecimal /if_decode_vhd_tst/i1/wb_jedinica/data_fro
 add wave -noupdate -radix hexadecimal /if_decode_vhd_tst/i1/wb_jedinica/rd_reg
 add wave -noupdate -radix hexadecimal /if_decode_vhd_tst/i1/wb_jedinica/rd_adr
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {52215 ps} 0}
+WaveRestoreCursors {{Cursor 1} {21230 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
