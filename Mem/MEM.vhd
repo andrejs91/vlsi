@@ -24,7 +24,7 @@ generic(
 	data_from_alu : in std_logic_vector((data_length - 1) downto 0); -- podatak iz alu jedinice
 	psw_from_alu : in std_logic_vector((data_length - 1) downto 0); -- psw iz alu jedinice
 	
-	data_alu_out: out std_logic_vector((data_length - 1) downto 0); -- prosledjivanje data_alu u wb fazu
+--	data_alu_out: out std_logic_vector((data_length - 1) downto 0); -- prosledjivanje data_alu u wb fazu
 	
 	st_value : in std_logic_vector((data_length - 1) downto 0); -- vrednost registra koja se upisuje u data kes kod store instr
 	
@@ -52,7 +52,7 @@ generic(
 end entity;
 
 architecture rtl of MEM is
-
+	signal d_cache : std_logic;
 begin
 
 	process (clk) is
@@ -66,15 +66,14 @@ begin
 --			wr<='0';
 --		end if;
 		
---		if(opcode="000000" and flush_ex='0' )then -- load 
---			addr_bus<=data_from_alu; -- adresa odakle se dohvata rec i smesta u reg Rd(instr(25..21))
---			rd<='1';
---		else
---			rd<='0';
---		end if;
+		if(opcode="000000" and flush_ex='0' )then -- load 
+			d_cache <= '1';
+		else
+			d_cache <= '0';
+		end if;
 	
 		flush_out<=flush_ex;
-		data_alu_out <= data_from_alu;
+	--	data_alu_out <= data_from_alu;
 	--	instr_out <= instr;
 		rd_adr_out <= rd_adr;
 		opcode_out <= opcode;
@@ -82,10 +81,11 @@ begin
 		load_out <= load;
 	end if;
 	end process;
-	rd_reg <=data_bus_in;
+	rd_reg <=data_bus_in when d_cache = '1' else data_from_alu;
 	addr_bus <= data_from_alu when (opcode="000000" or opcode="000001") and flush_ex='0' else (others => 'Z'); --adresa za citanje iz data mem
 	data_bus_out <= st_value when opcode="000001" and flush_ex='0' else (others => 'Z');
 	rd <= '1' when opcode="000000" and flush_ex='0' else '0';
 	wr <= '1' when opcode="000001" and flush_ex='0' else '0';
+	
 	end architecture;
 	

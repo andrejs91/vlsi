@@ -52,8 +52,6 @@ entity Decode is
 		opcode_out : out std_logic_vector((opcode_length-1) downto 0);
 		rd_adr: out std_logic_vector(4 downto 0);
 		imm_value_out : out std_logic_vector (15 downto 0);
-		rs1_adr : out std_logic_vector((reg_adr_length-1) downto 0); -- adr registra -> exe 
-		rs2_adr : out std_logic_vector((reg_adr_length-1) downto 0); -- adr registra -> exe 
 		op1_adr_out : out std_logic_vector((reg_adr_length-1) downto 0); -- adr registra -> forward 
 		op2_adr_out : out std_logic_vector((reg_adr_length-1) downto 0); -- adr registra -> forward 
 		op1_data: inout std_logic_vector((reg_data_length-1) downto 0); 
@@ -97,8 +95,6 @@ begin
 			op1_adr <= (others=> 'Z');
 			op2_adr <= (others=> 'Z');
 			rd_adr <= (others=> 'Z');
-			rs1_adr <= (others=> 'Z');
-			rs2_adr <= (others=> 'Z');
 			
 		elsif (rising_edge(clk)) then
 		
@@ -110,7 +106,6 @@ begin
 			rd_adr <=	(others=> 'Z');
 			if (opcode = "000000") then -- load
 				op1_adr <= instr (20 downto 16);
-				--rs1_adr <= instr_from_if (20 downto 16); -- prosledjujemo adresu rs reg u fwd jedinicu
 				rd_adr <= instr (25 downto 21);
 				imm_value <= instr (15 downto 0);
 			end if;
@@ -122,7 +117,6 @@ begin
 			end if;
 			if (opcode = "000100") then -- mov
 				op1_adr <= instr (20 downto 16);
-				--rs1_adr <= instr_from_if (20 downto 16);
 				rd_adr <= instr (25 downto 21);
 			end if;
 			if (opcode = "000101") then -- movi
@@ -164,8 +158,6 @@ begin
 			
 			
 			--rts nema prosledjivanje vrednosti registra
-			rs1_adr <= op1_adr;
-			rs2_adr <= op2_adr;
 		
 		
 		

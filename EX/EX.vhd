@@ -40,7 +40,7 @@ port(
 	-- Izlazni signali iz ALU jedinica
 	data_alu_out : out std_logic_vector((data_length - 1) downto 0);
 	psw_alu_out : out std_logic_vector((data_length - 1) downto 0);
-	instr_out:out std_logic_vector((data_length-1) downto 0);
+	instr_out:out std_logic_vector((data_length-1) downto 0); -- ne koristi se
 	
 	flush_out: out std_logic;
 	flush_id: in std_logic;
@@ -72,6 +72,7 @@ constant zero_vector : std_logic_vector(data_length downto 0) := (others => '0')
 	ar_log<='0';
 	load<='0';
 	valid <='0';
+	brnch <= '0';
 	
 		if (enable = '1') then
 			result := (others => 'Z');
@@ -298,6 +299,7 @@ constant zero_vector : std_logic_vector(data_length downto 0) := (others => '0')
 			rd_adr_out <= (others => 'Z');
 			opcode_out  <= (others => 'Z');
 			st_value <= (others => 'Z');
+			
 		end if;
 	end if;
 	end process;

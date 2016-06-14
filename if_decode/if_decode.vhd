@@ -67,7 +67,6 @@ architecture rtl of if_decode is
 	signal rd_mem : std_logic;
 	signal wr_mem : std_logic;
 	signal opcode_mem_out: std_logic_vector((opcode_length-1) downto 0);
-	signal data_alu_mem_out: std_logic_vector(31 downto 0);
 	signal rd_adr_mem_out: std_logic_vector(4 downto 0);
 	signal rd_reg_mem: std_logic_vector(31 downto 0);
 	signal data_to_wb: std_logic_vector(31 downto 0);
@@ -103,8 +102,6 @@ architecture rtl of if_decode is
 	signal psw_alu_out : std_logic_vector((data_length - 1) downto 0);
 	signal instr_out: std_logic_vector((instr_length-1) downto 0);
 	signal flush_ex : std_logic;
-	signal rs1_adr : std_logic_vector (reg_adr_length-1 downto 0); 
-	signal rs2_adr : std_logic_vector (reg_adr_length-1 downto 0); 
 	signal op1_adr_out :std_logic_vector (reg_adr_length-1 downto 0); 
 	signal op2_adr_out :std_logic_vector (reg_adr_length-1 downto 0);
 	
@@ -126,7 +123,7 @@ begin
 		forward_rs1_ex,forward_rs1_mem,forward_rs1_wb,
 		data_alu_out,rd_reg_mem,wr_data,
 		forward_rs2_ex,forward_rs2_mem,forward_rs2_wb,
-		opcode_s,rd_adr,imm_value_out,rs1_adr,rs2_adr,op1_adr_out,op2_adr_out,op1_data,op2_data
+		opcode_s,rd_adr,imm_value_out,op1_adr_out,op2_adr_out,op1_data,op2_data
 	);
 	
 	instr_cache: entity work.InstrCache(ins_cache_impl)
@@ -144,14 +141,14 @@ begin
 	
 	mem_jedinica: entity work.MEM(rtl)
 	port map (
-	clk,reset,rd_mem,wr_mem,opcode_ex,opcode_mem_out,data_alu_out,psw_alu_out,data_alu_mem_out,st_value,
+	clk,reset,rd_mem,wr_mem,opcode_ex,opcode_mem_out,data_alu_out,psw_alu_out,st_value,
 	rd_adr_ex,rd_adr_mem_out,rd_reg_mem,instr_out,instr_mem_out,addr_bus,data_bus_out,
 	data_bus_in,flush_mem_out,flush_ex,ar_log,load,ar_log_out,load_out
 	);
 	
 	wb_jedinica: entity work.WB(rtl)
 	port map (
-	clk,reset,instr_mem_out,opcode_mem_out,wr,wr_data,wr_adr,data_alu_mem_out,
+	clk,reset,instr_mem_out,opcode_mem_out,wr,wr_data,wr_adr,
 	rd_reg_mem,rd_adr_mem_out,flush_mem_out,ar_log_out,load_out
 	);
 	
