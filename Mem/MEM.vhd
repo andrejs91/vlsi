@@ -53,6 +53,7 @@ end entity;
 
 architecture rtl of MEM is
 	signal d_cache : std_logic;
+	signal rd_form_alu : std_logic_vector(31 downto 0);
 begin
 
 	process (clk) is
@@ -73,7 +74,7 @@ begin
 		end if;
 	
 		flush_out<=flush_ex;
-	--	data_alu_out <= data_from_alu;
+		rd_form_alu <= data_from_alu;
 	--	instr_out <= instr;
 		rd_adr_out <= rd_adr;
 		opcode_out <= opcode;
@@ -81,7 +82,7 @@ begin
 		load_out <= load;
 	end if;
 	end process;
-	rd_reg <=data_bus_in when d_cache = '1' else data_from_alu;
+	rd_reg <=data_bus_in when d_cache = '1' else rd_form_alu;
 	addr_bus <= data_from_alu when (opcode="000000" or opcode="000001") and flush_ex='0' else (others => 'Z'); --adresa za citanje iz data mem
 	data_bus_out <= st_value when opcode="000001" and flush_ex='0' else (others => 'Z');
 	rd <= '1' when opcode="000000" and flush_ex='0' else '0';

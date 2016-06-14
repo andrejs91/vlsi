@@ -57,6 +57,15 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 ** Warning: C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/DataCache/DataCache.vhd(62): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
 
 
+} {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Mem/MEM.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Mem/MEM.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity MEM
+-- Compiling architecture rtl of MEM
+
 } {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/IF/if.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/IF/if.vhd}
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -77,6 +86,15 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling architecture impl of Decode
 -- Loading entity Regfile
 
+} {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/WB/WB.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/WB/WB.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity WB
+-- Compiling architecture rtl of WB
+
 } {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/InstructionCache/InstructionCache.vhd} {2 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/InstructionCache/InstructionCache.vhd}
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -90,5 +108,23 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 
 ** Warning: C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/InstructionCache/InstructionCache.vhd(49): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
 
+
+} {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/if_decode/if_decode.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/if_decode/if_decode.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity if_decode
+-- Compiling architecture rtl of if_decode
+-- Loading entity if_jedinica
+-- Loading package instrSet
+-- Loading entity Decode
+-- Loading entity InstrCache
+-- Loading entity Exe
+-- Loading entity MEM
+-- Loading entity WB
+-- Loading entity DataCache
+-- Loading entity Forward
 
 } {} {}}

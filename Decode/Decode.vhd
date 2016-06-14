@@ -123,11 +123,16 @@ begin
 				imm_value <= instr(15 downto 0);
 				rd_adr <= instr (25 downto 21);
 			end if;
-			if (opcode = "001000" or opcode = "001001" or (opcode >= "010000" and opcode <= "010011")) then --add, sub, and, or, xor, not
+			if (opcode = "001000" or opcode = "001001" or (opcode >= "010000" and opcode <= "010010")) then --add, sub, and, or, xor
 				op1_adr <= instr (20 downto 16);
 				op2_adr <= instr (15 downto 11);
 				rd_adr <= instr (25 downto 21);
 			end if;
+			if (opcode = "010011") then --not
+				op1_adr <= instr (20 downto 16);
+				rd_adr <= instr (25 downto 21);
+			end if;
+			
 			if (opcode = "001100" or opcode = "001101") then --addi, subi
 				op1_adr <= instr (20 downto 16);
 				imm_value <= instr (15 downto 0);

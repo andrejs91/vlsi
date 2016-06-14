@@ -251,34 +251,34 @@ constant zero_vector : std_logic_vector(data_length downto 0) := (others => '0')
 				
 			--NOT
 			when "010011" =>
-				result := '0' & (not op2_1);
+				result := '0' & (not op1_1);
 				ar_log<='1';
 				valid <='1';
 				
 			--Pomeracke instrukcije		
 			--SHL
 			when "011000" =>
-				result := '0' & to_stdlogicvector(to_bitvector(op1_1) sll to_integer(unsigned(op2_1)));
+				result := '0' & to_stdlogicvector(to_bitvector(op1_1) sll to_integer(unsigned(imm_value)));
 				ar_log<='1';
 				valid <='1';
 			--SHR
 			when "011001" =>
-				result := '0' & to_stdlogicvector(to_bitvector(op1_1) srl to_integer(unsigned(op2_1)));
+				result := '0' & to_stdlogicvector(to_bitvector(op1_1) srl to_integer(unsigned(imm_value)));
 				ar_log<='1';
 				valid <='1';
 			--SAR
 			when "011010" =>
-				result := '0' & to_stdlogicvector(to_bitvector(op1_1) sra to_integer(unsigned(op2_1)));
+				result := '0' & to_stdlogicvector(to_bitvector(op1_1) sra to_integer(unsigned(imm_value)));
 				ar_log<='1';
 				valid <='1';
 			--ROL
 			when "011011" =>
-				result := '0' & to_stdlogicvector(to_bitvector(op1_1) rol to_integer(unsigned(op2_1)));
+				result := '0' & to_stdlogicvector(to_bitvector(op1_1) rol to_integer(unsigned(imm_value)));
 				ar_log<='1';
 				valid <='1';
 				--ROR
 			when "011100" =>
-				result := '0' & to_stdlogicvector(to_bitvector(op1_1) ror to_integer(unsigned(op2_1)));
+				result := '0' & to_stdlogicvector(to_bitvector(op1_1) ror to_integer(unsigned(imm_value)));
 				ar_log<='1';
 				valid <='1';
 			
