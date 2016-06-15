@@ -16,15 +16,6 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity if_decode_vhd_tst
 -- Compiling architecture if_decode_arch of if_decode_vhd_tst
 
-} {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/EX/EX.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/EX/EX.vhd}
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity Exe
--- Compiling architecture rtl of Exe
-
 } {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Forward/forward.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Forward/forward.vhd}
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -57,15 +48,6 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 ** Warning: C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/DataCache/DataCache.vhd(62): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
 
 
-} {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Mem/MEM.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Mem/MEM.vhd}
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity MEM
--- Compiling architecture rtl of MEM
-
 } {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/IF/if.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/IF/if.vhd}
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -75,25 +57,14 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity if_jedinica
 -- Compiling architecture impl of if_jedinica
 
-} {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Decode/Decode.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Decode/Decode.vhd}
+} {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Branch_predictor/branch_predictor.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Branch_predictor/branch_predictor.vhd}
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Loading package instrSet
--- Compiling entity Decode
--- Compiling architecture impl of Decode
--- Loading entity Regfile
-
-} {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/WB/WB.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/WB/WB.vhd}
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity WB
--- Compiling architecture rtl of WB
+-- Compiling entity BranchPredictor
+-- Compiling architecture rtl of BranchPredictor
 
 } {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/InstructionCache/InstructionCache.vhd} {2 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/InstructionCache/InstructionCache.vhd}
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -108,23 +79,5 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 
 ** Warning: C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/InstructionCache/InstructionCache.vhd(49): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
 
-
-} {} {}} {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/if_decode/if_decode.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/if_decode/if_decode.vhd}
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity if_decode
--- Compiling architecture rtl of if_decode
--- Loading entity if_jedinica
--- Loading package instrSet
--- Loading entity Decode
--- Loading entity InstrCache
--- Loading entity Exe
--- Loading entity MEM
--- Loading entity WB
--- Loading entity DataCache
--- Loading entity Forward
 
 } {} {}}

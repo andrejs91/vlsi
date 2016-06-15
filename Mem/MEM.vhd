@@ -33,9 +33,6 @@ generic(
 	rd_adr_out: out std_logic_vector(4 downto 0); -- prosledjivanje u wb fazu 
 	rd_reg : out std_logic_vector(31 downto 0); -- vrednost procitana iz data kesa i prosledjuje se u wb fazu
 	
-	-- instrukcija
-	instr : in std_logic_vector((address_length - 1) downto 0);
-	instr_out : out std_logic_vector((address_length - 1) downto 0); -- instrukcija ka wb fazi
 	
 		addr_bus: out std_logic_vector(31 downto 0); --adresa ka data kesu
 		data_bus_out: out std_logic_vector(31 downto 0); --podatak ka data kesu

@@ -22,7 +22,11 @@ entity if_jedinica is
 		instr_to_decode: out std_logic_vector((instr_length-1) downto 0);--prosledjivanje instr u narednu fazu
 		stall: in std_logic;
 		flush_out: out std_logic;
-		flush: in std_logic
+		flush: in std_logic;
+		
+		pc_to_pred : out std_logic_vector (addr_length-1 downto 0);
+		pc_predicted : in std_logic_vector (addr_length-1 downto 0);
+		branch_predicted : in std_logic
 	);
 end if_jedinica;
 
@@ -37,14 +41,16 @@ begin
 	begin 
 	
 		if (reset = '1') then
-			--pc<= initial_PC;
 			pc_next<= initial_PC;
 			ird<= '0';
 		elsif (rising_edge(clk)) then
+			if (branch_predicted = '1') then 
+				pc_next <= std_logic_vector(unsigned(pc_predicted) + 1);
 			
-			pc_next <= std_logic_vector(unsigned(pc_next) + 1);
-			pc<=pc_next;
+			else 
+				pc_next <= std_logic_vector(unsigned(pc_next) + 1);
 			
+			end if;
 			
 			ird<='1';
 			pc_reg_out <= pc;
@@ -52,7 +58,7 @@ begin
 			
 			if(stall='1') then
 				pc_next <= pc_next;
-				pc <= pc;
+				
 				pc_reg_out<= pc_reg_out;
 			end if;
 	
@@ -62,6 +68,7 @@ begin
 	instr_to_decode<=instr;
 	IF_addr <= pc when stall = '0' else pc_reg_out;
 	pc_out <= pc_reg_out;
-	
+	pc_to_pred <= pc;
+	pc <= pc_next when branch_predicted = '0' else pc_predicted;
 	
 end impl;

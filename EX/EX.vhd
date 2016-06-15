@@ -23,8 +23,6 @@ port(
 	
 	st_value : out std_logic_vector((data_length - 1) downto 0);
 	
-	-- instrukcija
-	instr : in std_logic_vector((address_length - 1) downto 0);
 	
 		opcode_in : in std_logic_vector(5 downto 0);
 		opcode_out : out std_logic_vector((opcode_length-1) downto 0);
@@ -40,7 +38,6 @@ port(
 	-- Izlazni signali iz ALU jedinica
 	data_alu_out : out std_logic_vector((data_length - 1) downto 0);
 	psw_alu_out : out std_logic_vector((data_length - 1) downto 0);
-	instr_out:out std_logic_vector((data_length-1) downto 0); -- ne koristi se
 	
 	flush_out: out std_logic;
 	flush_id: in std_logic;

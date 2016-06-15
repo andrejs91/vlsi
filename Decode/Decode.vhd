@@ -19,7 +19,6 @@ entity Decode is
 		reset: in std_logic;
 		PC_addr: in std_logic_vector((addr_length-1) downto 0); --Vrednost PC dobijena iz if faze
 		instr_from_if:in std_logic_vector((instr_length-1) downto 0); -- instrukcija iz if-a
-		instr_out:out std_logic_vector((instr_length-1) downto 0); -- prosledjivanje instrukcije u sledecu fazu
 		
 		stall: in std_logic;
 		flush_out: out std_logic;
@@ -99,7 +98,7 @@ begin
 		elsif (rising_edge(clk)) then
 		
 			opcode := instr((instr_length-1) downto (instr_length-opcode_length));
-			instr_out <= instr;
+		--	instr_out <= instr;
 			opcode_out <= opcode;
 			op1_adr <= (others=> 'Z');
 			op2_adr <=	(others=> 'Z');

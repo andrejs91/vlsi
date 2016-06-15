@@ -1,5 +1,5 @@
 Analysis & Synthesis report for cpu
-Tue Jun 14 14:38:39 2016
+Wed Jun 15 18:09:58 2016
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -23,12 +23,14 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
  15. Parameter Settings for User Entity Instance: MEM:mem_jedinica
  16. Parameter Settings for User Entity Instance: WB:wb_jedinica
  17. Parameter Settings for User Entity Instance: DataCache:data_cache
- 18. Port Connectivity Checks: "Exe:exe_jedinica"
- 19. Port Connectivity Checks: "Decode:decode_jedinica|Regfile:regFile"
- 20. Port Connectivity Checks: "Decode:decode_jedinica"
- 21. Port Connectivity Checks: "if_jedinica:if_jedinica"
- 22. Elapsed Time Per Partition
- 23. Analysis & Synthesis Messages
+ 18. Parameter Settings for User Entity Instance: BranchPredictor:predictor
+ 19. Port Connectivity Checks: "BranchPredictor:predictor"
+ 20. Port Connectivity Checks: "Exe:exe_jedinica"
+ 21. Port Connectivity Checks: "Decode:decode_jedinica|Regfile:regFile"
+ 22. Port Connectivity Checks: "Decode:decode_jedinica"
+ 23. Port Connectivity Checks: "if_jedinica:if_jedinica"
+ 24. Elapsed Time Per Partition
+ 25. Analysis & Synthesis Messages
 
 
 
@@ -54,7 +56,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Jun 14 14:38:39 2016           ;
+; Analysis & Synthesis Status        ; Successful - Wed Jun 15 18:09:58 2016           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; cpu                                             ;
 ; Top-level Entity Name              ; if_decode                                       ;
@@ -172,6 +174,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------+-----------------+-----------------+-------------------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path      ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                        ; Library ;
 +---------------------------------------+-----------------+-----------------+-------------------------------------------------------------------------------------+---------+
+; Branch_predictor/branch_predictor.vhd ; yes             ; User VHDL File  ; C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Branch_predictor/branch_predictor.vhd ;         ;
 ; Forward/forward.vhd                   ; yes             ; User VHDL File  ; C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Forward/forward.vhd                   ;         ;
 ; WB/WB.vhd                             ; yes             ; User VHDL File  ; C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/WB/WB.vhd                             ;         ;
 ; Regfile/Regfile.vhd                   ; yes             ; User VHDL File  ; C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Regfile/Regfile.vhd                   ;         ;
@@ -349,6 +352,27 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: BranchPredictor:predictor ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; tag_size       ; 32    ; Signed Integer                                ;
+; addr_length    ; 32    ; Signed Integer                                ;
+; data_length    ; 32    ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "BranchPredictor:predictor"                                                          ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; hit  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
 +-----------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "Exe:exe_jedinica"                                                                    ;
 +-------+--------+----------+-------------------------------------------------------------------------------------+
@@ -401,9 +425,12 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Tue Jun 14 14:38:33 2016
+    Info: Processing started: Wed Jun 15 18:09:54 2016
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off cpu -c cpu
 Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file branch_predictor/branch_predictor.vhd
+    Info (12022): Found design unit 1: BranchPredictor-rtl
+    Info (12023): Found entity 1: BranchPredictor
 Info (12021): Found 2 design units, including 1 entities, in source file forward/forward.vhd
     Info (12022): Found design unit 1: Forward-rtl
     Info (12023): Found entity 1: Forward
@@ -440,14 +467,18 @@ Info (12021): Found 2 design units, including 1 entities, in source file datacac
 Info (12127): Elaborating entity "if_decode" for the top level hierarchy
 Warning (10541): VHDL Signal Declaration warning at if_decode.vhd(41): used implicit default value for signal "psw_wr" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Warning (10541): VHDL Signal Declaration warning at if_decode.vhd(44): used implicit default value for signal "psw_in" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10036): Verilog HDL or VHDL warning at if_decode.vhd(62): object "brnch" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at if_decode.vhd(85): object "flush_if" assigned a value but never read
-Warning (10541): VHDL Signal Declaration warning at if_decode.vhd(86): used implicit default value for signal "flush_if_decode" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at if_decode.vhd(89): used implicit default value for signal "flush_id" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at if_decode.vhd(61): object "brnch" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at if_decode.vhd(83): object "flush_if" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at if_decode.vhd(84): used implicit default value for signal "flush_if_decode" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at if_decode.vhd(87): used implicit default value for signal "flush_id" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at if_decode.vhd(109): used implicit default value for signal "update_predictor" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at if_decode.vhd(110): used implicit default value for signal "update_value" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at if_decode.vhd(111): used implicit default value for signal "branch_taken" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at if_decode.vhd(113): object "hit" assigned a value but never read
 Info (12129): Elaborating entity "if_jedinica" using architecture "A:impl" for hierarchy "if_jedinica:if_jedinica"
-Warning (10492): VHDL Process Statement warning at if.vhd(41): signal "initial_PC" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at if.vhd(44): signal "initial_PC" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (12129): Elaborating entity "Decode" using architecture "A:impl" for hierarchy "Decode:decode_jedinica"
-Warning (10541): VHDL Signal Declaration warning at Decode.vhd(66): used implicit default value for signal "psw_rd" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Decode.vhd(65): used implicit default value for signal "psw_rd" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Info (12129): Elaborating entity "Regfile" using architecture "A:rtl" for hierarchy "Decode:decode_jedinica|Regfile:regFile"
 Warning (10541): VHDL Signal Declaration warning at Regfile.vhd(32): used implicit default value for signal "psw_out" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Warning (10492): VHDL Process Statement warning at Regfile.vhd(59): signal "psw" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
@@ -1482,15 +1513,14 @@ Info (10041): Inferred latch for "registers[0][30]" at Regfile.vhd(45)
 Info (10041): Inferred latch for "registers[0][31]" at Regfile.vhd(45)
 Info (12129): Elaborating entity "InstrCache" using architecture "A:ins_cache_impl" for hierarchy "InstrCache:instr_cache"
 Info (12129): Elaborating entity "Exe" using architecture "A:rtl" for hierarchy "Exe:exe_jedinica"
-Warning (10541): VHDL Signal Declaration warning at EX.vhd(43): used implicit default value for signal "instr_out" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Info (12129): Elaborating entity "MEM" using architecture "A:rtl" for hierarchy "MEM:mem_jedinica"
-Warning (10541): VHDL Signal Declaration warning at MEM.vhd(38): used implicit default value for signal "instr_out" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Info (12129): Elaborating entity "WB" using architecture "A:rtl" for hierarchy "WB:wb_jedinica"
 Info (12129): Elaborating entity "DataCache" using architecture "A:rtl" for hierarchy "DataCache:data_cache"
 Info (12129): Elaborating entity "Forward" using architecture "A:rtl" for hierarchy "Forward:fwd"
 Warning (10036): Verilog HDL or VHDL warning at forward.vhd(39): object "ind" assigned a value but never read
 Warning (10492): VHDL Process Statement warning at forward.vhd(58): signal "valid" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at forward.vhd(76): signal "valid" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12129): Elaborating entity "BranchPredictor" using architecture "A:rtl" for hierarchy "BranchPredictor:predictor"
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
@@ -1500,10 +1530,10 @@ Warning (21074): Design contains 2 input pin(s) that do not drive logic
 Info (21057): Implemented 2 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 25 warnings
-    Info: Peak virtual memory: 508 megabytes
-    Info: Processing ended: Tue Jun 14 14:38:39 2016
-    Info: Elapsed time: 00:00:06
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 27 warnings
+    Info: Peak virtual memory: 504 megabytes
+    Info: Processing ended: Wed Jun 15 18:09:58 2016
+    Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:03
 
 
