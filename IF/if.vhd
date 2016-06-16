@@ -24,9 +24,13 @@ entity if_jedinica is
 		flush_out: out std_logic;
 		flush: in std_logic;
 		
-		pc_to_pred : out std_logic_vector (addr_length-1 downto 0);
-		pc_predicted : in std_logic_vector (addr_length-1 downto 0);
-		branch_predicted : in std_logic
+		pc_to_pred : out std_logic_vector (addr_length-1 downto 0); -- pc saljemo u prediktor
+		pc_predicted : in std_logic_vector (addr_length-1 downto 0); -- prediktovana vrednost pc-a
+		pc_predicted_out : out std_logic_vector (addr_length-1 downto 0);
+		branch_predicted : in std_logic; -- predvidjanje da li ce doci do skoka
+		branch_predicted_out : out std_logic;
+		misprediction : in std_logic;
+		branch_pc : in std_logic_vector (addr_length-1 downto 0)  --ispravna vrednost pc-a kad se desi mispred
 	);
 end if_jedinica;
 
@@ -44,12 +48,17 @@ begin
 			pc_next<= initial_PC;
 			ird<= '0';
 		elsif (rising_edge(clk)) then
+			pc_predicted_out <= pc_predicted;
+			branch_predicted_out <= branch_predicted;
 			if (branch_predicted = '1') then 
 				pc_next <= std_logic_vector(unsigned(pc_predicted) + 1);
 			
 			else 
 				pc_next <= std_logic_vector(unsigned(pc_next) + 1);
 			
+			end if;
+			if (misprediction = '1') then 
+				pc_next <= branch_pc;
 			end if;
 			
 			ird<='1';

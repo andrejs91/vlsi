@@ -22,7 +22,6 @@ generic(
 		
 	-- Izlazni signali iz ALU jedinice
 	data_from_alu : in std_logic_vector((data_length - 1) downto 0); -- podatak iz alu jedinice
-	psw_from_alu : in std_logic_vector((data_length - 1) downto 0); -- psw iz alu jedinice
 	
 --	data_alu_out: out std_logic_vector((data_length - 1) downto 0); -- prosledjivanje data_alu u wb fazu
 	

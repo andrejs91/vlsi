@@ -1,4 +1,5 @@
 vendor_name = ModelSim
+source_file = 1, C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Branch_predictor/branch_predictor.vhd
 source_file = 1, C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Forward/forward.vhd
 source_file = 1, C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/WB/WB.vhd
 source_file = 1, C:/Users/Lela/Desktop/VHDL projekat 10.6.2016/Regfile/Regfile.vhd

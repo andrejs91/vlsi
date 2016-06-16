@@ -20,20 +20,20 @@ entity Decode is
 		PC_addr: in std_logic_vector((addr_length-1) downto 0); --Vrednost PC dobijena iz if faze
 		instr_from_if:in std_logic_vector((instr_length-1) downto 0); -- instrukcija iz if-a
 		
+		--PC ka EXE fazi za bezuslovne skokove
+		PC_addr_out: out std_logic_vector((addr_length-1) downto 0);
+		
 		stall: in std_logic;
 		flush_out: out std_logic;
 		flush_if: in std_logic;
 		flush: in std_logic;
 		
 		wr: in std_logic;
-		psw_wr: in std_logic;
 		wr_adr: in std_logic_vector((reg_adr_length-1) downto 0); --adresa registra za upis u regfile
 		wr_data: in std_logic_vector((reg_data_length-1) downto 0);
-		psw_in: in std_logic_vector((reg_data_length-1) downto 0);
 		rs1_data: out std_logic_vector((reg_data_length-1) downto 0); -- vrednost registra ka exe
 		rs2_data: out std_logic_vector((reg_data_length-1) downto 0); -- vrednost registra ka exe
 		
-		psw_out: out std_logic_vector((reg_data_length-1) downto 0);
 		
 		
 		forward_rs1_ex: in std_logic;
@@ -54,7 +54,13 @@ entity Decode is
 		op1_adr_out : out std_logic_vector((reg_adr_length-1) downto 0); -- adr registra -> forward 
 		op2_adr_out : out std_logic_vector((reg_adr_length-1) downto 0); -- adr registra -> forward 
 		op1_data: inout std_logic_vector((reg_data_length-1) downto 0); 
-		op2_data: inout std_logic_vector((reg_data_length-1) downto 0)
+		op2_data: inout std_logic_vector((reg_data_length-1) downto 0);
+		
+		pc_predicted : in std_logic_vector (addr_length-1 downto 0); -- prediktovana vrednost pc-a
+		pc_predicted_out : out std_logic_vector (addr_length-1 downto 0);
+		branch_predicted : in std_logic; -- predvidjanje da li ce doci do skoka
+		branch_predicted_out : out std_logic;
+		misprediction : in std_logic
 	);
 end Decode;
 
@@ -62,7 +68,6 @@ end Decode;
 architecture impl of Decode is
 	signal op1_adr, op2_adr : std_logic_vector((reg_adr_length-1) downto 0);
 	signal imm_value : std_logic_vector (15 downto 0);
-	signal psw_rd : std_logic;
 	signal flush_next : std_logic;
 	signal instr, instr_next : std_logic_vector((instr_length-1) downto 0);
 	
@@ -73,16 +78,12 @@ begin
 		reset=>reset,
 		rd=>'1',
 		wr=>wr,
-		psw_wr=>psw_wr,
-		psw_rd=>psw_rd,
 		op1_rd_adr=>op1_adr,
 		op2_rd_adr=>op2_adr,
 		wr_adr=>wr_adr,
 		wr_data=>wr_data,
-		psw_in=>psw_in,
 		op1_data=>op1_data,
-		op2_data=>op2_data,
-		psw_out=>psw_out
+		op2_data=>op2_data
 	);
 	
 	
@@ -98,11 +99,15 @@ begin
 		elsif (rising_edge(clk)) then
 		
 			opcode := instr((instr_length-1) downto (instr_length-opcode_length));
-		--	instr_out <= instr;
 			opcode_out <= opcode;
 			op1_adr <= (others=> 'Z');
 			op2_adr <=	(others=> 'Z');
 			rd_adr <=	(others=> 'Z');
+			PC_addr_out <= PC_addr;
+			
+			pc_predicted_out <= pc_predicted;
+			branch_predicted_out <= branch_predicted;
+			
 			if (opcode = "000000") then -- load
 				op1_adr <= instr (20 downto 16);
 				rd_adr <= instr (25 downto 21);
@@ -155,15 +160,16 @@ begin
 				rd_adr <= instr (25 downto 21);
 			end if;
 			
+			instr_next <= instr;
+			
 			if(stall='1') then
 				op1_adr <= op1_adr; 
 				op2_adr <= op2_adr;
+				instr_next <= instr_next;
 			end if;
 			
 			
 			--rts nema prosledjivanje vrednosti registra
-		
-		
 		
 			if(flush='1' or flush_if='1') then
 				flush_next<='1';
@@ -171,8 +177,6 @@ begin
 				flush_next<='0';
 			end if;
 			
-			instr_next <= instr;
-		
 		end if;
 	
 	end process;
